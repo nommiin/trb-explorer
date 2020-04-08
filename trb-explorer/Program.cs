@@ -10,9 +10,10 @@ namespace trb_explorer {
             // Collection of files to read
             List<string> _toshiFiles = new List<string>() {
                 //@"D:\Steam\steamapps\common\de Blob\Data\Font\Blob.font.trb",
-                @"D:\Steam\steamapps\common\de Blob\Data\LEVELS\PRODUCTION\Singleplayer\Abyss\RegionAssets.trb",
                 //@"D:\Steam\steamapps\common\de Blob\Data\credits.trb",
-                //@"D:\Steam\steamapps\common\de Blob\Data\Entities\StateData.trb"
+                //@"D:\Steam\steamapps\common\de Blob\Data\Entities\ProjectileData.trb"
+                //@"D:\Steam\steamapps\common\de Blob\Data\Matlibs\bkg_rev3.trb"
+                @"D:\Steam\steamapps\common\de Blob\Data\LEVELS\PRODUCTION\Singleplayer\Abyss\RegionAssets.trb"
             };
 
             // Loop through files and parse
@@ -43,6 +44,12 @@ namespace trb_explorer {
                 _ += (char)__;
                 __ = _reader.ReadByte();
             }
+            return _;
+        }
+
+        public static byte PeekByte(this BinaryReader _reader) {
+            byte _ = _reader.ReadByte();
+            _reader.BaseStream.Seek(-1, SeekOrigin.Current);
             return _;
         }
     }

@@ -13,13 +13,9 @@ namespace trb_explorer {
             // TODO: Figure out more of the header
             _reader.BaseStream.Seek(48, SeekOrigin.Begin);
             string _ttexName = _reader.ReadStringNT();
-            while (true) {
-                long _readerOrigin = _reader.BaseStream.Position;
-                if (_reader.ReadUInt32() == 542327876) {
-                    _reader.BaseStream.Seek(_readerOrigin, SeekOrigin.Begin);
-                    break;
-                } else _reader.BaseStream.Seek(_readerOrigin + 1, SeekOrigin.Begin);
-            }
+            while (_reader.PeekByte() == 0x00) { _reader.BaseStream.Seek(1, SeekOrigin.Current); }
+            _reader.BaseStream.Seek(24, SeekOrigin.Current);
+            
             File.WriteAllBytes(_path + "\\" + _ttexName, _reader.ReadBytes((int)(_file.Length - _reader.BaseStream.Position)));
         }
     }
