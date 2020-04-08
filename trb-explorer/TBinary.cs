@@ -37,7 +37,6 @@ namespace trb_explorer {
             if (Directory.Exists(_path) == false) Directory.CreateDirectory(_path);
             for (int i = 0; i < this.Files.Count; i++) {
                 TFile _toshiFile = this.Files[i];
-                Console.WriteLine("Symbol: {0}", _toshiFile.Symbol.Name);
                 this.Reader.BaseStream.Seek(_toshiFile.Origin + _toshiFile.Offset, SeekOrigin.Begin);
                 using (BinaryReader _fileReader = new BinaryReader(new MemoryStream(this.Reader.ReadBytes(_toshiFile.Length)))) {
                     MethodInfo _fileHandler = Assembly.GetExecutingAssembly().GetType("trb_explorer.FileHandler").GetMethod("Handle_" + _toshiFile.Symbol.Name);

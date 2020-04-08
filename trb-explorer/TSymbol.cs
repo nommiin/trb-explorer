@@ -9,18 +9,13 @@ namespace trb_explorer {
         public string Name;
         public long Base;
 
-        public TSymbol(BinaryReader _reader, long _origin, Int32 _count) {
+        public TSymbol(BinaryReader _reader, ref Int32 _offset) {
+            this.Base = _reader.BaseStream.Position + 12;
             this.Index = _reader.ReadInt16();
-            this.Base = _reader.BaseStream.Position + 10;
-            _reader.BaseStream.Seek(_origin + (_count * 12), SeekOrigin.Begin);
+            _reader.BaseStream.Seek(_offset, SeekOrigin.Begin);
             this.Name = _reader.ReadStringNT();
             _reader.BaseStream.Seek(this.Base, SeekOrigin.Begin);
-            Console.WriteLine(this);
-            /*this.Base = _reader.BaseStream.Position + 8;
-            _reader.BaseStream.Seek(_origin + (_count * 12) + (this.Index * 12), SeekOrigin.Begin);
-            this.Name = _reader.ReadStringNT();
-            _reader.BaseStream.Seek(this.Base, SeekOrigin.Begin);
-            Console.WriteLine(this);*/
+            _offset += this.Name.Length + 1;
         }
 
         public override string ToString() {

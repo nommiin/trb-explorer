@@ -9,7 +9,8 @@ namespace trb_explorer {
         static void Main(string[] args) {
             // Collection of files to read
             List<string> _toshiFiles = new List<string>() {
-                @"D:\Steam\steamapps\common\de Blob\Data\Font\Blob.font.trb",
+                //@"D:\Steam\steamapps\common\de Blob\Data\Font\Blob.font.trb",
+                @"D:\Steam\steamapps\common\de Blob\Data\LEVELS\PRODUCTION\Singleplayer\Abyss\RegionAssets.trb",
                 //@"D:\Steam\steamapps\common\de Blob\Data\credits.trb",
                 //@"D:\Steam\steamapps\common\de Blob\Data\Entities\StateData.trb"
             };
